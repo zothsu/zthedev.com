@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@alpinejs/intersect": "^3.14.9",
-    "@astrojs/db": "^0.18.0",
+    "@astrojs/db": "^0.21.3",
     "@splidejs/splide": "^4.1.4",
     "@tailwindcss/cli": "^4.1.14",
     "@tailwindcss/vite": "^4.1.4",
     "alpinejs": "^3.14.9",
-    "astro": "^5.7.8",
+    "astro": "^6.4.5",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
