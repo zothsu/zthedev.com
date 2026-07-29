@@ -1,6 +1,5 @@
 ---
 import ColoredText from "./ColoredText.astro";
-import Button from "./ui/Button.astro";
 // import ProgressBar from "./ui/ProgressBar.astro";
 
 export interface AboutType {
@@ -8,7 +7,6 @@ export interface AboutType {
   title: string;
   subtitle: string;
   image: string;
-  downloadLink: string;
   stats: { value: string; label: string; borderColor: string }[];
   // skills: { name: string; percentage: number }[];
   description: string[];
@@ -19,7 +17,6 @@ const aboutData: AboutType = {
   title: "DevOps-Focused Problem Solver",
   subtitle: "Human-Centered Automation & Web Engineering",
   image: "/img/about.jpeg",
-  downloadLink: "/files/resume.pdf",
   stats: [
     { value: "7", label: "CI/CD Pipelines", borderColor: "neon-purple" },
     { value: "6+", label: "Years in tech", borderColor: "neon-cyan" },
@@ -102,32 +99,6 @@ const aboutData: AboutType = {
             ))
           }
         </div> -->
-        <div class="pt-4">
-          <Button
-            variant="outline"
-            color="cyan"
-            link={true}
-            download={true}
-            href={aboutData.downloadLink}
-          >
-            Download Resume
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-download"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
-              ></path>
-              <path
-                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
-              ></path>
-            </svg>
-          </Button>
-        </div>
       </div>
     </div>
   </div>
