@@ -9,7 +9,6 @@ Personal portfolio and developer website built with Astro, Tailwind CSS, and Alp
 * Astro
 * Tailwind CSS v4
 * Alpine.js
-* Astro DB
 * Splide.js
 
 ## Installation
@@ -70,20 +69,13 @@ ssh -p 65002 your_user@your_server_ip
 
 ## TODO
 
-### General
+### Contact
 
-* [ ] Update favicon
-* [ ] Decide between SPA or click-through site
-
-### CSS
-
-* [ ] Change neon-cyan to green in global CSS
-  * [ ] Update instances of `neon-cyan` to `green`
-
-### Hero
-
-* [ ] Increase size of head img
-* [ ] Implement max-width for `ProfileCard`
+* [ ] Stand up a working backend for the contact form (currently disabled on both `/` and `/contact` with a "temporarily unavailable" notice)
+* [ ] Replace placeholder social links (`#`) in `ContactUs.astro` with real profile URLs
+* [ ] Refactor SVG for GH logo #29
+* [ ] Refactor SVG for LinkedIn logo #37
+* [ ] Add Fediverse Servers
 
 ### Projects
 
@@ -94,17 +86,9 @@ ssh -p 65002 your_user@your_server_ip
 * [ ] Add link to hosted certification
   * [ ] [FCC Certification](https://freecodecamp.org/certification/zoe-moment/responsive-web-design)
 
-### Contact
-
-* [ ] Refactor SVG for GH logo #29
-* [ ] Refactor SVG for LinkedIn logo #37
-* [ ] Add Fediverse Servers
-* [ ] Decide on SPA `components/ContactSection.astro` or click-through site `pages/contact.astro` + `components/ContactUs`
-
 ### Blog
 
-* Add Blog back onto main menu
-* Update blog photos
+* [ ] Update blog photos
 
 ## Questions for Future Me
 
