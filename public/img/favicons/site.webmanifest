@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Z-theDev",
+  "short_name": "Z-theDev",
   "icons": [
     {
       "src": "favicon-16x16.png",
@@ -38,7 +38,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#082918",
+  "background_color": "#082918",
   "display": "standalone"
 }

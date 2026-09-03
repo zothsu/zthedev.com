@@ -3,6 +3,7 @@ import "../styles/tailwind.css";
 import "@splidejs/splide/dist/css/splide.min.css";
 
 import Header from '../components/Header.astro';
+import Favicon from '../components/Favicon.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
 
@@ -12,6 +13,7 @@ export interface LayoutProps {
 }
 
 const { title, description = 'Crafting futuristic digital experiences with innovative web solutions.' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +21,12 @@ const { title, description = 'Crafting futuristic digital experiences with innov
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#082918" />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalURL} />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png" />
+    <Favicon />
   </head>
   <body class="bg-dark-space font-sans text-white">
     <Header />
