@@ -33,7 +33,7 @@ const navItems: NavItemType[] = [
           <a
             data-type="smooth"
             href={item.href}
-            class="[&.active]:text-neon-cyan text-white hover:text-neon-cyan transition-colors duration-300"
+            class="[&.active]:text-neon-cyan hover:text-neon-cyan transition-colors duration-300"
             class:list={[item.isButton && 'inline-flex items-center justify-center bg-neon-purple/20 hover:bg-neon-purple/40 border border-neon-purple px-4 py-2 rounded']}
           >
             {item.label}
@@ -78,7 +78,7 @@ const navItems: NavItemType[] = [
           data-type="smooth"
           x-on:click="navOpen = false"
           href={item.href}
-          class="[&.active]:text-neon-cyan flex items-center px-3 py-2 text-white hover:text-neon-cyan"
+          class="[&.active]:text-neon-cyan flex items-center px-3 py-2 hover:text-neon-cyan"
           class:list={[item.isButton && 'mt-3 justify-center bg-neon-purple/20 hover:bg-neon-purple/40 border border-neon-purple rounded']}
         >
           {item.label}
