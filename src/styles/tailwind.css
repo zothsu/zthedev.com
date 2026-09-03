@@ -97,6 +97,51 @@
 }
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Hide Alpine.js elements before Alpine loads */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Nav */
+.nav-link {
+    @apply transition-colors duration-300 hover:text-neon-cyan;
+}
+.nav-link.active {
+    @apply text-neon-cyan;
+}
+/* Plain-text nav links must stay distinguishable without color alone (WCAG 1.4.1);
+   the pill button is exempt since its border/fill already signals it non-color. */
+.nav-link:not(.nav-link-button) {
+    @apply underline-offset-4 hover:underline;
+}
+.nav-link.active:not(.nav-link-button) {
+    @apply underline;
+}
+.nav-link-button {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded border border-neon-purple bg-neon-purple/20 hover:bg-neon-purple/40;
+}
+.nav-link-button.active {
+    @apply bg-neon-purple/40;
+}
+.nav-link-mobile {
+    @apply flex items-center px-3 py-2 transition-colors duration-300 hover:text-neon-cyan;
+}
+.nav-link-mobile.active {
+    @apply text-neon-cyan;
+}
+.nav-link-mobile:not(.nav-link-mobile-button) {
+    @apply underline-offset-4 hover:underline;
+}
+.nav-link-mobile.active:not(.nav-link-mobile-button) {
+    @apply underline;
+}
+.nav-link-mobile-button {
+    @apply mt-3 justify-center rounded border border-neon-purple bg-neon-purple/20 hover:bg-neon-purple/40;
+}
+.nav-link-mobile-button.active {
+    @apply bg-neon-purple/40;
+}
+
 /* Theme */
 .neon-text {
     text-shadow: 0 0 10px #000000, 0 0 20px var(--color-neon-cyan);

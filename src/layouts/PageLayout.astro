@@ -2,7 +2,7 @@
 import "../styles/tailwind.css";
 import "@splidejs/splide/dist/css/splide.min.css";
 
-import Header from '../components/Header.astro';
+import Header, { type NavItemType } from '../components/Header.astro';
 import Favicon from '../components/Favicon.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
@@ -11,6 +11,15 @@ export interface LayoutProps {
   title: string;
   description?: string;
 }
+
+const navItems: NavItemType[] = [
+  { label: 'HOME', href: '/' },
+  { label: 'ABOUT', href: '/about' },
+  { label: 'SERVICES', href: '/services' },
+  { label: 'PROJECTS', href: '/projects' },
+  { label: 'BLOGS', href: '/blogs' },
+  { label: 'CONTACT', href: '/contact', isButton: true },
+];
 
 const { title, description = 'Crafting futuristic digital experiences with innovative web solutions.' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -29,7 +38,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <Favicon />
   </head>
   <body class="bg-dark-space font-sans text-white">
-    <Header />
+    <Header navItems={navItems} />
     <main id="main" class="pt-6">
         <slot />
     </main>
