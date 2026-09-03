@@ -29,4 +29,6 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p 65002 -H "$REMOTE_HOST" >> ~/.ssh/known_hosts
-          rsync -avz --delete -e "ssh -p 65002 -i ~/.ssh/deploy_key" dist/ "$REMOTE_USER@$REMOTE_HOST:~/public_html/"
+          # --exclude keeps the blog out of what's synced to production; it still
+          # builds locally/in CI for preview, it just never reaches the live site.
+          rsync -avz --delete --exclude 'blogs/' -e "ssh -p 65002 -i ~/.ssh/deploy_key" dist/ "$REMOTE_USER@$REMOTE_HOST:~/public_html/"

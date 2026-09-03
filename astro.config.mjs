@@ -5,7 +5,13 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://zthedev.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // The blog is excluded from production deploys (see
+      // .github/workflows/deploy.yml), so keep it out of the sitemap too.
+      filter: (page) => !page.includes('/blogs'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

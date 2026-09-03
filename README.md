@@ -43,17 +43,16 @@ Build the project first:
 npm run build
 ```
 
-Copy the `dist/` directory to your server using `rsync`:
+Copy the `dist/` directory to your server using `rsync`. The blog is excluded
+from deploys (see `.github/workflows/deploy.yml`), so manual deploys should
+match:
 
 ```bash
-rsync -avz --delete dist/ your_user@your_server_ip:/home/your_user/public_html/
+rsync -avz --delete --exclude 'blogs/' dist/ your_user@your_server_ip:/home/your_user/public_html/
 ```
 
-Or using `scp`:
-
-```bash
-scp -r dist/* your_user@your_server_ip:/home/your_user/public_html/
-```
+`scp` has no built-in exclude flag, so prefer `rsync` above; if you must use
+`scp`, copy everything except `dist/blogs/` manually.
 
 To connect directly via SSH:
 
