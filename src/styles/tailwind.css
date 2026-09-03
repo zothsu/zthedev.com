@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "ZedMono Nerd Font", "Courier New", monospace;
+  --font-code: "UbuntuMono Nerd Font", "Courier New", monospace;
+  --color-darker-space: #03140b;
+  --color-dark-space: #082918;
+  --color-neon-cyan: #39ff14;
+  --color-neon-purple: #d7a0ff;
+}
+
 @layer base {
   @font-face {
     font-family: "ZedMono Nerd Font";
