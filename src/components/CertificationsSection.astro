@@ -85,18 +85,18 @@ const certificationsData: Certification[] = [
   </div>
 
   <div class="max-w-7xl mx-auto px-4 relative">
-    <div class="mb-16 text-center">
+    <div class="mb-16">
       <span class="text-neon-purple font-code">{headingData.subtitle}</span>
       <h2 class="text-4xl md:text-5xl font-bold mt-2">
         <ColoredText text={headingData.title} wordsPerColor={1} />
       </h2>
-      <div class="h-1 w-24 bg-neon-cyan mx-auto mt-4"></div>
-      <p class="text-gray-300 max-w-3xl mx-auto mt-6">
+      <div class="h-1 w-24 bg-neon-cyan mt-4"></div>
+      <p class="text-gray-300 max-w-3xl mt-6">
         {headingData.description}
       </p>
     </div>
 
-    <div class="flex flex-col items-center gap-8">
+    <div class="flex flex-col items-start gap-8">
       {
         certificationsData.map((certification) => (
           <CertificationCard

@@ -30,53 +30,30 @@ const headingData: HeadingType = {
   subtitle: "//PORTFOLIO",
   title: "Human Centered Design",
   highlight: "Design",
-  description:
-    "A showcase of open-source, accessible, and thoughtfully engineered projects — from static sites and web apps to full DevOps stacks.",
+  description: "A showcase of my most recent projects.",
   highlightColor: "neon-cyan",
 };
 const projectsData: ProjectType[] = [
   {
     id: 1,
-    title: "PNW Web Solutions",
+    title: "Z-theDev",
     category: "Static Website",
-    image:
-      "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760981010/Screenshot_2025-10-20_at_10.16.12_AM_kyta7m.png",
-    alt: "PNW Web Solutions Screenshot",
-    description:
-      "",
+    image: "/img/projects/zthedev-hero.jpg",
+    alt: "Z-theDev portfolio homepage screenshot",
+    description: "",
     modalDescription:
-      "My primary business site showcasing service packages, contact forms, and links to client work. Built with Astro and Tailwind for speed and accessibility.",
-    technologies: ["Astro", "Tailwind", "CI/CD"],
+      "This portfolio — a fast, accessible site built with Astro, Tailwind, and Alpine.js, deployed via automated CI/CD.",
+    technologies: ["Astro", "Tailwind", "Alpine.js", "CI/CD"],
     features: [
       "Accessible design system",
-      "Automated CI/CD with SSH deploys",
-      "Custom email and analytics integrations",
+      "Automated CI/CD deploys via GitHub Actions",
+      "Dark-mode-aware SVG favicon",
     ],
-    projectLink: "https://github.com/zothsu/pnwDigitalSolutions",
+    projectLink: "https://github.com/zothsu/zthedev.com",
     badge: "Featured",
     badgeColor: "neon-cyan",
     borderColor: "neon-cyan",
-    images: [
-      "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760980727/Screenshot_2025-10-20_at_10.18.07_AM_xweg4f.png",
-      "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760980790/Screenshot_2025-10-20_at_10.19.34_AM_ru8sl0.png",
-    ],
-  },
-  {
-    id: 3,
-    title: "Emilie Young, Doula",
-    category: "Static Website",
-    image:
-      "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760917377/emDoula_iu3sxy.png",
-    alt: "Screenshot of Adding review to campground",
-    description: "",
-    modalDescription: "Portfolio website for Portland, OR Doula - Emilie Young",
-    technologies: ["Hugo", "CI/CD Pipeline", "Node.js", "Cloudinary"],
-    features: ["Theme Switcher", "Neurodivergent-friendly UI design"],
-    projectLink: "https://github.com/zothsu/emilieYoung",
-    badge: "",
-    badgeColor: "neon-cyan",
-    borderColor: "neon-cyan",
-    images: [],
+    images: ["/img/projects/zthedev-certifications.jpg"],
   },
   {
     id: 4,
@@ -102,6 +79,23 @@ const projectsData: ProjectType[] = [
       "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760983780/inspireme-1_sg89iz.png",
       "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760983781/inspireme-2_qqomep.png",
     ],
+  },
+  {
+    id: 3,
+    title: "Emilie Young, Doula",
+    category: "Static Website",
+    image:
+      "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760917377/emDoula_iu3sxy.png",
+    alt: "Screenshot of Adding review to campground",
+    description: "",
+    modalDescription: "Portfolio website for Portland, OR Doula - Emilie Young",
+    technologies: ["Hugo", "CI/CD Pipeline", "Node.js", "Cloudinary"],
+    features: ["Theme Switcher", "Neurodivergent-friendly UI design"],
+    projectLink: "https://github.com/zothsu/emilieYoung",
+    badge: "",
+    badgeColor: "neon-cyan",
+    borderColor: "neon-cyan",
+    images: [],
   },
   // {
   //   id: 6,
@@ -165,14 +159,15 @@ const projectsData: ProjectType[] = [
         return this.projects.find(p => p.id === id);
       }
     }`}
+    x-on:keydown.escape.window="closeModal()"
   >
-    <div class="mb-16 text-center">
+    <div class="mb-16">
       <span class="text-neon-cyan font-code">{headingData.subtitle}</span>
       <h2 class="text-4xl md:text-5xl font-bold mt-2">
         <ColoredText text={headingData.title} wordsPerColor={1} />
       </h2>
-      <div class="h-1 w-24 bg-neon-purple mx-auto mt-4"></div>
-      <p class="text-gray-300 max-w-3xl mx-auto mt-6">
+      <div class="h-1 w-24 bg-neon-purple mt-4"></div>
+      <p class="text-gray-300 max-w-3xl mt-6">
         {headingData.description}
       </p>
     </div>
@@ -237,7 +232,7 @@ const projectsData: ProjectType[] = [
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
-                class="absolute inset-0 bg-gradient-to-t from-dark-space via-dark-space/70 to-transparent flex flex-col justify-end p-6"
+                class="absolute inset-0 bg-gradient-to-t from-darker-space via-darker-space/85 to-darker-space/40 flex flex-col justify-end p-6"
               >
                 <h3
                   class="text-xl font-bold text-neon-cyan mb-2"
@@ -273,7 +268,7 @@ const projectsData: ProjectType[] = [
               class="transition-colors duration-300 text-sm font-bold flex items-center hover:opacity-80"
               x-bind:class="`text-${project.borderColor}`"
             >
-              View Project
+              View Repo
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-4 w-4 ml-1"

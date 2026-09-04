@@ -74,6 +74,10 @@
     font-display: swap;
   }
 
+  html, :host {
+    font-size: 18px;
+  }
+
   *,
   ::after,
   ::before,

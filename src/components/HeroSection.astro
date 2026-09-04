@@ -14,14 +14,13 @@ export interface HeroType {
     color: "purple" | "cyan";
   }[];
   profile: { name: string; title: string; image: string };
-  techStack: string[];
 }
 
 const heroData: HeroType = {
   label: "Full Stack Developer & Design Engineer",
   title: "Z-theDev — Building with Heart & Automation",
   subtitle:
-    "Combining DevOps logic, accessible design, and open-source spirit to build better systems for everyone.",
+    "Reduce operational friction through smart automation and thoughtful design.",
   cta: [
     {
       label: "Work With Me",
@@ -41,12 +40,6 @@ const heroData: HeroType = {
     title: "DevOps-Focused Web Developer",
     image: "https://res.cloudinary.com/dzuh8njoq/image/upload/v1760917163/signal-pofile_haxwrf.webp",
   },
-  techStack: [
-    "Tailwind & Astro",
-    "DevOps Tooling",
-    "Automation Pipelines",
-    "Accessible UX",
-  ],
 };
 ---
 
@@ -104,28 +97,6 @@ const heroData: HeroType = {
           title={heroData.profile.title}
           image={heroData.profile.image}
         />
-
-        <!-- Tech stack icons -->
-        <div
-          class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-x-4 gap-y-2 bg-dark-space/90 px-4 sm:px-6 py-2 border border-neon-cyan/30 backdrop-blur w-full sm:w-auto max-w-full text-sm sm:text-base"
-        >
-          {
-            heroData.techStack.map((tech, index) => (
-              <span class="flex items-center gap-2">
-                <span
-                  class={
-                    index % 2 === 0 ? "text-neon-cyan" : "text-neon-purple"
-                  }
-                >
-                  {tech}
-                </span>
-                {index < heroData.techStack.length - 1 && (
-                  <span class="text-gray-500"> | </span>
-                )}
-              </span>
-            ))
-          }
-        </div>
       </div>
     </div>
   </div>
