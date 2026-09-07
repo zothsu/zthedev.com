@@ -20,7 +20,7 @@
 
 ## Background
 
-This repo is the source for zthedev.com — a personal portfolio site covering projects, certifications, an about page, and a blog. It's scoped as a portfolio only; there's no services/sales content here (that lives on a separate site).
+This repo is the source for [zthedev.com](https://zthedev.com/) a personal portfolio site covering Z's projects, certifications, an about page, and soon a blog. It's scoped as a portfolio only; there's no services/sales content here.
 
 ## Tech Stack
 
