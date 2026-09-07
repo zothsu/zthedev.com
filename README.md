@@ -1,23 +1,45 @@
 # zthedev.com
 
-[Repository](https://github.com/zothsu/zthedev.com)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/richardlitt/standard-readme)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
 
-Personal portfolio and developer website built with Astro, Tailwind CSS, and Alpine.js.
+> Personal portfolio and developer website, built with Astro, Tailwind CSS, and Alpine.js.
+
+[Repository](https://github.com/zothsu/zthedev.com) · [Live site](https://zthedev.com)
+
+## Table of Contents
+
+- [Background](#background)
+- [Tech Stack](#tech-stack)
+- [Install](#install)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Background
+
+This repo is the source for zthedev.com — a personal portfolio site covering projects, certifications, an about page, and a blog. It's scoped as a portfolio only; there's no services/sales content here (that lives on a separate site).
 
 ## Tech Stack
 
-* Astro
-* Tailwind CSS v4
-* Alpine.js
-* Splide.js
+- [Astro](https://astro.build/) — static site generation and routing
+- [Tailwind CSS v4](https://tailwindcss.com/) — styling
+- [Alpine.js](https://alpinejs.dev/) — lightweight interactivity
+- [Splide.js](https://splidejs.com/) — carousels
 
-## Installation
+## Install
+
+Requires Node.js `>=22.12.0`.
 
 ```bash
 npm install
 ```
 
-Start the development server:
+## Usage
+
+Start the local dev server:
 
 ```bash
 npm run dev
@@ -35,29 +57,29 @@ Preview the production build locally:
 npm run preview
 ```
 
-## Deployment to Hostinger via SSH
+## Project Structure
 
-Build the project first:
+```text
+src/
+├── components/    # Astro components (sections, shared UI under components/ui/)
+├── data/          # Static content (e.g. blog post metadata)
+├── layouts/       # Page layouts
+├── pages/         # File-based routes
+├── styles/        # Tailwind entry point and bundled fonts
+└── turso.ts       # Turso (libSQL) client, for future backend use
+public/
+└── img/           # Static images, favicons
+```
+
+## Deployment
+
+Pushes to `main` trigger [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the site and deploys it to Hostinger over `rsync` via SSH. The blog is excluded from production deploys and from the sitemap (see `astro.config.mjs`), so it's only reachable in local/preview builds.
+
+To deploy manually:
 
 ```bash
 npm run build
-```
-
-Copy the `dist/` directory to your server using `rsync`. The blog is excluded
-from deploys (see `.github/workflows/deploy.yml`), so manual deploys should
-match:
-
-```bash
 rsync -avz --delete --exclude 'blogs/' dist/ your_user@your_server_ip:/home/your_user/public_html/
-```
-
-`scp` has no built-in exclude flag, so prefer `rsync` above; if you must use
-`scp`, copy everything except `dist/blogs/` manually.
-
-To connect directly via SSH:
-
-```bash
-ssh your_user@your_server_ip
 ```
 
 Hostinger shared hosting SSH port is typically `65002`:
@@ -66,29 +88,12 @@ Hostinger shared hosting SSH port is typically `65002`:
 ssh -p 65002 your_user@your_server_ip
 ```
 
-## TODO
+## Contributing
 
-### Contact
+This is a personal portfolio site and isn't set up to accept outside contributions. Feel free to open an issue if you spot a bug.
 
-* [ ] Stand up a working backend for the contact form (currently disabled on both `/` and `/contact` with a "temporarily unavailable" notice)
-* [ ] Replace placeholder social links (`#`) in `ContactUs.astro` with real profile URLs
-* [ ] Refactor SVG for GH logo #29
-* [ ] Refactor SVG for LinkedIn logo #37
-* [ ] Add Fediverse Servers
+## License
 
-### Projects
+[GNU AGPL v3.0](LICENSE) © Zoe Sullivan
 
-* [ ] Add repo button to modal
-
-### Certifications
-
-* [ ] Add link to hosted certification
-  * [ ] [FCC Certification](https://freecodecamp.org/certification/zoe-moment/responsive-web-design)
-
-### Blog
-
-* [ ] Update blog photos
-
-## Questions for Future Me
-
-Do I want to have a contact page if I have it at the bottom of my front page with a button at the top as well? Feels like a contact page might be a little bit overkill.
+The bundled fonts under `src/styles/font/` (Nerd Fonts, Ubuntu Mono) are licensed separately under the [SIL Open Font License 1.1](src/styles/font/LICENSE.md).
