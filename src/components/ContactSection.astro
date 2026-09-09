@@ -7,8 +7,8 @@ export interface ContactInfoType {
   description: string;
   contact_title: string;
   contact_description: string;
-  // email: { label: string; href: string };
-  // phone: { label: string; href: string };
+  email: { label: string; href: string };
+  phone: { label: string; href: string };
   socials: { href: string; icon: string }[];
 }
 
@@ -16,15 +16,18 @@ const contactData: ContactInfoType = {
   label: "Contact",
   title: "Prefer the written word?",
   description:
-    "Using a contact box instead of an email reduces the ammount of spam I receive from bots. If you really need to email me directly use the contact form below to ask for my email address.",
+    "Using a contact box instead of an email reduces the ammount of spam I receive from bots.",
   contact_title: "Get in Touch",
   contact_description:
-    "Im available for freelance projects, collaborations, or just a chat about futuristic tech.",
-  // email: { label: 'mark@neoweb.dev', href: 'mailto:mark@neoweb.dev' },
-  // phone: { label: '+1 (234) 567-890', href: 'tel:+1234567890' },
+    "Get in touch with your project brief. Let's talk about whether we're a good match.",
+  email: {
+    label: "E-mail me!",
+    href: "mailto:zsullivan@zthedev.com",
+  },
+  phone: { label: "+1 (234) 567-890", href: "tel:+1234567890" },
   socials: [
     {
-      href: "https://github.com",
+      href: "https://github.com/zothsu",
       icon: "M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.68 0 0 .84-.27 2.75 1.02A9.564 9.564 0 0112 6.8c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z",
     },
     // {
@@ -32,23 +35,20 @@ const contactData: ContactInfoType = {
     //   icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.227-1.691 4.746-4.919 4.894-1.265.058-1.645.069-4.849.069-3.204 0-3.584-.012-4.849-.069-3.227-.148-4.746-1.691-4.894-4.919-.058-1.265-.069-1.645-.069-4.849 0-3.204.012-3.584.069-4.849.148-3.252 1.691-4.771 4.919-4.919 1.265-.058 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.058 1.281-.072 1.689-.072 4.948 0 3.259.014 3.667.072 4.947.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.667-.014 4.947-.072 4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948 0-3.259-.014-3.667-.072-4.947-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z',
     // },
     {
-      href: "https://www.linkedin.com/in/z-thedev/",
+      href: "https://www.linkedin.com/in/z-sullivan/",
       icon: "M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z",
     },
-    // {
-    //   href: "x",
-    //   icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
-    // },
+    {
+      href: "https://x.com/z_thedev",
+      icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
+    },
   ],
 };
 ---
 
 <section id="contact" class="py-20 lg:py-24 relative overflow-hidden">
   <div class="absolute inset-0 cyber-grid opacity-20"></div>
-  <div
-    class="absolute top-0 left-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-3xl"
-  >
-  </div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-3xl"></div>
 
   <div class="max-w-7xl mx-auto px-4 relative">
     <div class="mb-16">
@@ -57,17 +57,15 @@ const contactData: ContactInfoType = {
         <ColoredText text={contactData.title} wordsPerColor={1} />
       </h2>
       <div class="h-1 w-24 bg-neon-cyan mt-4"></div>
-      <p class="text-gray-300 max-w-3xl mt-6">
-        {contactData.description}
-      </p>
+      <p class="text-gray-300 max-w-3xl mt-6">{contactData.description}</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8">
       <!-- Contact Form (temporarily disabled, no working backend yet) -->
       <div class="bg-dark-space/80 border border-neon-cyan/30 rounded-lg p-6 sm:p-8 flex items-center">
         <p class="text-gray-300">
-          The contact form is temporarily unavailable while the site is being rebuilt.
-          In the meantime, reach out via the links below.
+          The contact form is temporarily unavailable while the site is being
+          rebuilt. In the meantime, reach out via the links below.
         </p>
       </div>
 
@@ -77,13 +75,11 @@ const contactData: ContactInfoType = {
           <h3 class="text-2xl font-bold text-neon-cyan mb-4">
             {contactData.contact_title}
           </h3>
-          <p class="text-gray-300">
-            {contactData.contact_description}
-          </p>
+          <p class="text-gray-300">{contactData.contact_description}</p>
         </div>
         <div class="space-y-4">
           <div class="flex items-center">
-            <!-- <svg
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6 text-neon-purple mr-3"
               fill="none"
@@ -96,15 +92,16 @@ const contactData: ContactInfoType = {
                 stroke-width="2"
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               ></path>
-            </svg> -->
-            <!-- <a
+            </svg>
+            <a
               href={contactData.email.href}
               class="text-gray-300 hover:text-neon-cyan transition duration-300"
-              >{contactData.email.label}</a
-            > -->
+            >
+              {contactData.email.label}
+            </a>
           </div>
-          <div class="flex items-center">
-            <!-- <svg
+          <!-- <div class="flex items-center">
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6 text-neon-purple mr-3"
               fill="none"
@@ -117,35 +114,36 @@ const contactData: ContactInfoType = {
                 stroke-width="2"
                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
               ></path>
-            </svg> -->
-            <!-- <a
+            </svg>
+            <a
               href={contactData.phone.href}
               class="text-gray-300 hover:text-neon-cyan transition duration-300"
-              >{contactData.phone.label}</a
-            > -->
-          </div>
+            >
+              {contactData.phone.label}
+            </a>
+          </div> -->
         </div>
         <div>
-          <h4 class="text-neon-cyan font-bold mb-4">Follow what I'm planting in my digital garden!</h4>
+          <h4 class="text-neon-cyan font-bold mb-4">
+            Follow what I'm planting in my digital garden!
+          </h4>
           <div class="flex items-center gap-4">
-            {
-              contactData.socials.map((social) => (
-                <a
-                  href={social.href}
-                  target="_blank"
-                  class="text-gray-300 hover:text-neon-cyan transition duration-300"
+            {contactData.socials.map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                class="text-gray-300 hover:text-neon-cyan transition duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-8 w-8"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d={social.icon} />
-                  </svg>
-                </a>
-              ))
-            }
+                  <path d={social.icon} />
+                </svg>
+              </a>
+            ))}
           </div>
         </div>
       </div>
