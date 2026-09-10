@@ -18,7 +18,7 @@
     "@tailwindcss/cli": "^4.1.14",
     "@tailwindcss/vite": "^4.1.4",
     "alpinejs": "^3.14.9",
-    "astro": "^7.1.5",
+    "astro": "^7.2.8",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
