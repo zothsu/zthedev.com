@@ -1,11 +1,11 @@
 ---
+import Contact2 from "./starwind-pro/contact-02/Contact2.astro";
+
 export interface ContactInfoType {
-  contact_title: string;
   socials: { href: string; icon: string }[];
 }
 
 const contactData: ContactInfoType = {
-  contact_title: "Get in Touch",
   socials: [
     {
       href: "https://github.com/zothsu",
@@ -27,42 +27,38 @@ const contactData: ContactInfoType = {
 };
 ---
 
-<section id="contact" class="py-20 lg:py-24 relative overflow-hidden">
+<section id="contact" class="relative overflow-hidden">
   <div class="absolute inset-0 cyber-grid opacity-20"></div>
   <div class="absolute top-0 left-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-3xl"></div>
 
-  <div class="max-w-7xl mx-auto px-4 relative">
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Contact Info -->
-      <div class="space-y-8">
-        <div>
-          <h3 class="text-2xl font-bold text-neon-cyan mb-4">
-            {contactData.contact_title}
-          </h3>
-        </div>
-        <div>
-          <h4 class="text-neon-cyan font-bold mb-4">
-            Follow what I'm planting in my digital garden!
-          </h4>
-          <div class="flex items-center gap-4">
-            {contactData.socials.map((social) => (
-              <a
-                href={social.href}
-                target="_blank"
-                class="text-gray-300 hover:text-neon-cyan transition duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d={social.icon} />
-                </svg>
-              </a>
-            ))}
-          </div>
-        </div>
+  <div class="relative">
+    <Contact2
+      badge="Let's chat"
+      heading="I'd love to hear from you"
+      description="What kind of question do you have for me?"
+    />
+
+    <div class="mx-auto max-w-3xl px-4 pb-20 text-center lg:pb-24">
+      <h4 class="text-neon-cyan font-bold mb-4">
+        Follow what I'm planting in my digital garden!
+      </h4>
+      <div class="flex items-center justify-center gap-4">
+        {contactData.socials.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            class="text-gray-300 hover:text-neon-cyan transition duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d={social.icon} />
+            </svg>
+          </a>
+        ))}
       </div>
     </div>
   </div>
