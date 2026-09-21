@@ -87,7 +87,20 @@ const {
           />
         </div>
 
+        <!-- Honeypot: hidden from people, tempting to bots -->
+        <div class="absolute -left-[9999px]" aria-hidden="true">
+          <label for="contact-website-02">Website</label>
+          <input
+            id="contact-website-02"
+            name="website"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
         <Button variant="primary" type="submit" class="w-full @xl:w-auto"> Send Message </Button>
+        <p id="contact-form-02-status" class="text-sm" role="status" aria-live="polite"></p>
       </form>
     </CardContent>
   </Card>
@@ -98,24 +111,69 @@ const {
 </section>
 
 <script>
+  const WEBHOOK_URL = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL;
+
   function handleFormSubmit() {
-    const form = document.querySelector("#contact-form-02") as HTMLFormElement;
+    const form = document.querySelector<HTMLFormElement>("#contact-form-02");
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = "true";
 
-    if (form) {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const formValues = Object.fromEntries(formData.entries());
+    const status = form.querySelector<HTMLElement>("#contact-form-02-status")!;
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const submitLabel = submit.textContent;
+    const loadedAt = Date.now();
 
-        // demo form data logging
-        console.log("Contact form:", formValues);
-
-        // You can add additional logic here like:
-        // - Form validation
-        // - API submission
-        // - Success/error handling
-      });
+    function setStatus(message: string, kind: "success" | "error") {
+      status.textContent = message;
+      status.classList.toggle("text-success", kind === "success");
+      status.classList.toggle("text-red-400", kind === "error");
     }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const values = Object.fromEntries(new FormData(form).entries());
+
+      // A filled honeypot means a bot; report success without sending anything.
+      if (values.website) {
+        setStatus("Thanks! Your message is on its way.", "success");
+        form.reset();
+        return;
+      }
+
+      if (!WEBHOOK_URL) {
+        setStatus("The contact form isn't configured yet. Please try again later.", "error");
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = "Sending...";
+      status.textContent = "";
+
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            subject: values.subject,
+            message: values.message,
+            website: "",
+            elapsedMs: Date.now() - loadedAt,
+            source: "zthedev.com",
+          }),
+        });
+        if (!response.ok) throw new Error(`Webhook responded ${response.status}`);
+        setStatus("Thanks! Your message is on its way.", "success");
+        form.reset();
+      } catch (error) {
+        console.error("Contact form submission failed:", error);
+        setStatus("Something went wrong sending your message. Please try again in a moment.", "error");
+      } finally {
+        submit.disabled = false;
+        submit.textContent = submitLabel;
+      }
+    });
   }
 
   handleFormSubmit();

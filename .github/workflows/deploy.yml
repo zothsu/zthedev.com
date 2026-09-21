@@ -18,6 +18,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          PUBLIC_CONTACT_WEBHOOK_URL: ${{ vars.PUBLIC_CONTACT_WEBHOOK_URL }}
 
       - name: Deploy via rsync
         env:
