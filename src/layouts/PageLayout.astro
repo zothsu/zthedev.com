@@ -2,10 +2,10 @@
 import "../styles/tailwind.css";
 import "@splidejs/splide/dist/css/splide.min.css";
 
-import Header, { type NavItemType } from '../components/Header.astro';
-import Favicon from '../components/Favicon.astro';
-import Footer from '../components/Footer.astro';
-import BackToTop from '../components/BackToTop.astro';
+import Header, { type NavItemType } from "../components/Header.astro";
+import Favicon from "../components/Favicon.astro";
+import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
 
 export interface LayoutProps {
   title: string;
@@ -13,16 +13,20 @@ export interface LayoutProps {
 }
 
 const navItems: NavItemType[] = [
-  { label: 'HOME', href: '/' },
-  { label: 'ABOUT', href: '/about' },
-  { label: 'PROJECTS', href: '/projects' },
-  { label: 'CONTACT', href: '/contact', isButton: true },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT", href: "/about" },
+  { label: "PROJECTS", href: "/projects" },
+  { label: "CONTACT", href: "/contact", isButton: true },
 ];
 
-const { title, description = 'Crafting futuristic digital experiences with innovative web solutions.' } = Astro.props;
+const {
+  title,
+  description = "Crafting futuristic digital experiences with innovative web solutions.",
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,45 +39,49 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png" />
     <Favicon />
   </head>
-  <body class="bg-dark-space font-sans text-white">
+  <body class="bg-dark-space font-sans text-white p-1">
     <Header navItems={navItems} />
     <main id="main" class="pt-6">
-        <slot />
+      <slot />
     </main>
     <Footer />
     <BackToTop />
 
     <script>
-    declare global {
-      interface Window {
-        Alpine: typeof import('alpinejs');
+      declare global {
+        interface Window {
+          Alpine: typeof import("alpinejs");
+        }
       }
-    }
-    import Alpine from 'alpinejs';
+      import Alpine from "alpinejs";
 
-    window.Alpine = Alpine;
-    Alpine.start();
+      window.Alpine = Alpine;
+      Alpine.start();
 
-    // Smooth Scroll and Active Class Handling
-    document.addEventListener('DOMContentLoaded', () => {
-      const navLinks = document.querySelectorAll('a[data-type="smooth"]');
+      // Smooth Scroll and Active Class Handling
+      document.addEventListener("DOMContentLoaded", () => {
+        const navLinks = document.querySelectorAll('a[data-type="smooth"]');
 
-      navLinks.forEach((anchor) => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const href = anchor.getAttribute('href');
-          const targetId = href ? href.substring(1) : '';
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            const yOffset = -70;
+        navLinks.forEach((anchor) => {
+          anchor.addEventListener("click", (e) => {
+            e.preventDefault();
+            const href = anchor.getAttribute("href");
+            const targetId = href ? href.substring(1) : "";
+            const targetElement = document.getElementById(targetId);
             if (targetElement) {
-              const y = targetElement ? targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset : 0;
-              window.scrollTo({ top: y, behavior: 'smooth' });
+              const yOffset = -70;
+              if (targetElement) {
+                const y = targetElement
+                  ? targetElement.getBoundingClientRect().top +
+                    window.pageYOffset +
+                    yOffset
+                  : 0;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
             }
-          }
+          });
         });
       });
-    });
     </script>
   </body>
 </html>
