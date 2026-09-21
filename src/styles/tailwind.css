@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./starwind.css";
 
 @theme {
   --font-sans: "ZedMono Nerd Font", "Courier New", monospace;
@@ -257,4 +258,12 @@
 .post-content h5:first-child,
 .post-content h6:first-child {
   @apply mt-0;
+}
+
+/* Map Starwind's dark tokens onto the site palette */
+.dark {
+    --card: var(--color-darker-space);
+    --primary: var(--color-neon-purple);
+    --primary-foreground: var(--color-darker-space);
+    --primary-accent: var(--color-neon-purple);
 }

@@ -1,19 +1,10 @@
 ---
-import ColoredText from "./ColoredText.astro";
-
 export interface ContactInfoType {
-  label: string;
-  title: string;
-  description: string;
   contact_title: string;
   socials: { href: string; icon: string }[];
 }
 
 const contactData: ContactInfoType = {
-  label: "Contact",
-  title: "Prefer the written word?",
-  description:
-    "Using a contact box instead of an email reduces the amount of spam I receive from bots.",
   contact_title: "Get in Touch",
   socials: [
     {
@@ -41,24 +32,7 @@ const contactData: ContactInfoType = {
   <div class="absolute top-0 left-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-3xl"></div>
 
   <div class="max-w-7xl mx-auto px-4 relative">
-    <div class="mb-16">
-      <span class="text-neon-purple font-code">//{contactData.label}</span>
-      <h2 class="text-4xl md:text-5xl font-bold mt-2">
-        <ColoredText text={contactData.title} wordsPerColor={1} />
-      </h2>
-      <div class="h-1 w-24 bg-neon-cyan mt-4"></div>
-      <p class="text-gray-300 max-w-3xl mt-6">{contactData.description}</p>
-    </div>
-
     <div class="grid md:grid-cols-2 gap-8">
-      <!-- Contact Form (temporarily disabled, no working backend yet) -->
-      <div class="bg-dark-space/80 border border-neon-cyan/30 rounded-lg p-6 sm:p-8 flex items-center">
-        <p class="text-gray-300">
-          The contact form is temporarily unavailable while the site is being
-          rebuilt. In the meantime, reach out via the links below.
-        </p>
-      </div>
-
       <!-- Contact Info -->
       <div class="space-y-8">
         <div>
