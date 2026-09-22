@@ -36,10 +36,21 @@ jobs:
         env:
           PUBLIC_CONTACT_WEBHOOK_URL: ${{ vars.PUBLIC_CONTACT_WEBHOOK_URL }}
         run: |
+          echo "--- data-webhook-url attribute as built ---"
+          grep -o 'data-webhook-url[^>]*' dist/contact/index.html || echo "attribute not found at all"
           if ! grep -q "$PUBLIC_CONTACT_WEBHOOK_URL" dist/contact/index.html; then
             echo "::error::PUBLIC_CONTACT_WEBHOOK_URL is missing from the built contact page. Refusing to deploy a broken contact form."
             exit 1
           fi
+
+      # TEMP: upload the built page so it can be inspected independent of
+      # rsync/hosting, to isolate whether corruption happens before or after
+      # this point. Remove once the contact-form pipeline is confirmed stable.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contact-page-debug
+          path: dist/contact/index.html
+          retention-days: 1
 
       - name: Deploy via rsync
         env:
