@@ -18,15 +18,28 @@ jobs:
       - run: npm ci
 
       - name: Write client env
-        # Astro/Vite's static replacement of import.meta.env.PUBLIC_* only
-        # reliably picks up values loaded from a .env file, not a bare
-        # process-env var passed via the step's `env:` block, so write one
-        # instead of relying on that.
+        # Belt and suspenders: this build step has intermittently NOT picked
+        # up PUBLIC_CONTACT_WEBHOOK_URL on this runner (root cause unclear,
+        # confirmed non-deterministic across otherwise-identical runs), so
+        # write it as a .env.production file in addition to passing it as a
+        # process env var below, and fail the build below if neither lands.
         env:
           PUBLIC_CONTACT_WEBHOOK_URL: ${{ vars.PUBLIC_CONTACT_WEBHOOK_URL }}
         run: printf 'PUBLIC_CONTACT_WEBHOOK_URL=%s\n' "$PUBLIC_CONTACT_WEBHOOK_URL" > .env.production
 
-      - run: npm run build
+      - name: Build
+        env:
+          PUBLIC_CONTACT_WEBHOOK_URL: ${{ vars.PUBLIC_CONTACT_WEBHOOK_URL }}
+        run: npm run build
+
+      - name: Verify contact webhook URL made it into the build
+        env:
+          PUBLIC_CONTACT_WEBHOOK_URL: ${{ vars.PUBLIC_CONTACT_WEBHOOK_URL }}
+        run: |
+          if ! grep -q "$PUBLIC_CONTACT_WEBHOOK_URL" dist/contact/index.html; then
+            echo "::error::PUBLIC_CONTACT_WEBHOOK_URL is missing from the built contact page. Refusing to deploy a broken contact form."
+            exit 1
+          fi
 
       - name: Deploy via rsync
         env:
