@@ -17,9 +17,16 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
+      - name: Write client env
+        # Astro/Vite's static replacement of import.meta.env.PUBLIC_* only
+        # reliably picks up values loaded from a .env file, not a bare
+        # process-env var passed via the step's `env:` block, so write one
+        # instead of relying on that.
         env:
           PUBLIC_CONTACT_WEBHOOK_URL: ${{ vars.PUBLIC_CONTACT_WEBHOOK_URL }}
+        run: printf 'PUBLIC_CONTACT_WEBHOOK_URL=%s\n' "$PUBLIC_CONTACT_WEBHOOK_URL" > .env.production
+
+      - run: npm run build
 
       - name: Deploy via rsync
         env:
