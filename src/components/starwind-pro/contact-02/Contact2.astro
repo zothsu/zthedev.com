@@ -28,6 +28,12 @@ const {
   class: className,
   ...rest
 } = Astro.props;
+
+// Read at render time (frontmatter, server-side) and hand it to the client
+// via a data attribute rather than referencing import.meta.env from inside
+// the client <script>: that reference wasn't reliably replaced by the
+// production build in CI, silently shipping a form with no submit handler.
+const webhookUrl = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL ?? "";
 ---
 
 <section class={sectionStyles({ class: className })} {...rest}>
@@ -47,7 +53,12 @@ const {
 
   <Card class="mt-10">
     <CardContent>
-      <form class="space-y-6" id="contact-form-02" name="contact-form">
+      <form
+        class="space-y-6"
+        id="contact-form-02"
+        name="contact-form"
+        data-webhook-url={webhookUrl}
+      >
         <div class="grid gap-6 @xl:grid-cols-2">
           <div class="flex flex-col gap-1">
             <Label for="contact-name-02">Full Name</Label>
@@ -111,12 +122,12 @@ const {
 </section>
 
 <script>
-  const WEBHOOK_URL = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL;
-
   function handleFormSubmit() {
     const form = document.querySelector<HTMLFormElement>("#contact-form-02");
     if (!form || form.dataset.bound) return;
     form.dataset.bound = "true";
+
+    const webhookUrl = form.dataset.webhookUrl ?? "";
 
     const status = form.querySelector<HTMLElement>("#contact-form-02-status")!;
     const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
@@ -140,7 +151,7 @@ const {
         return;
       }
 
-      if (!WEBHOOK_URL) {
+      if (!webhookUrl) {
         setStatus("The contact form isn't configured yet. Please try again later.", "error");
         return;
       }
@@ -150,7 +161,7 @@ const {
       status.textContent = "";
 
       try {
-        const response = await fetch(WEBHOOK_URL, {
+        const response = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
