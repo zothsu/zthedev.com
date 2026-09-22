@@ -28,16 +28,6 @@ jobs:
 
       - run: npm run build
 
-      - name: TEMP debug env embedding
-        run: |
-          echo "node: $(node -v)"
-          echo "--- .env.production ---"
-          cat .env.production || echo "MISSING"
-          echo "--- grep dist for webhook host ---"
-          grep -r "n8n.wildpear.school" dist/contact/index.html || echo "NOT FOUND IN DIST"
-          echo "--- inline module script in dist ---"
-          grep -o '<script type="module">.*</script>' dist/contact/index.html | head -c 2000
-
       - name: Deploy via rsync
         env:
           SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
