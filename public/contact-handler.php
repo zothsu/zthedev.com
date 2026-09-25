@@ -11,6 +11,9 @@ const ESPO_LEAD_URL = 'https://crm.zthedev.com/api/v1/Lead';
 const API_KEY_FILE = '/home/u634839907/domains/zthedev.com/espo-lead-api-key.php';
 const ALLOWED_ORIGINS = ['https://zthedev.com', 'https://www.zthedev.com'];
 const MIN_ELAPSED_MS = 3000;
+// EspoCRM user that new Leads are assigned to (the API user's role needs
+// Assignment Permission = all for this to be accepted).
+const ASSIGNED_USER_ID = '6ab6e104435fd17e2';
 
 header('Content-Type: application/json');
 header('Cache-Control: no-store');
@@ -77,6 +80,7 @@ $lead = [
     'lastName' => $lastName,
     'emailAddress' => $email,
     'source' => 'Web Site',
+    'assignedUserId' => ASSIGNED_USER_ID,
     'description' => ($subject !== '' ? "Subject: $subject\n\n" : '') . $message,
 ];
 
