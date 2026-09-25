@@ -28,12 +28,6 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-
-// Read at render time (frontmatter, server-side) and hand it to the client
-// via a data attribute rather than referencing import.meta.env from inside
-// the client <script>: that reference wasn't reliably replaced by the
-// production build in CI, silently shipping a form with no submit handler.
-const webhookUrl = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL ?? "";
 ---
 
 <section class={sectionStyles({ class: className })} {...rest}>
@@ -53,12 +47,7 @@ const webhookUrl = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL ?? "";
 
   <Card class="mt-10">
     <CardContent>
-      <form
-        class="space-y-6"
-        id="contact-form-02"
-        name="contact-form"
-        data-webhook-url={webhookUrl}
-      >
+      <form class="space-y-6" id="contact-form-02" name="contact-form">
         <div class="grid gap-6 @xl:grid-cols-2">
           <div class="flex flex-col gap-1">
             <Label for="contact-name-02">Full Name</Label>
@@ -127,8 +116,6 @@ const webhookUrl = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL ?? "";
     if (!form || form.dataset.bound) return;
     form.dataset.bound = "true";
 
-    const webhookUrl = form.dataset.webhookUrl ?? "";
-
     const status = form.querySelector<HTMLElement>("#contact-form-02-status")!;
     const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const submitLabel = submit.textContent;
@@ -151,17 +138,14 @@ const webhookUrl = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL ?? "";
         return;
       }
 
-      if (!webhookUrl) {
-        setStatus("The contact form isn't configured yet. Please try again later.", "error");
-        return;
-      }
-
       submit.disabled = true;
       submit.textContent = "Sending...";
       status.textContent = "";
 
       try {
-        const response = await fetch(webhookUrl, {
+        // Same-site PHP script (public/contact-handler.php) that creates the
+        // Lead in EspoCRM, so no CRM URL or key ever appears in the page.
+        const response = await fetch("/contact-handler.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -171,10 +155,9 @@ const webhookUrl = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL ?? "";
             message: values.message,
             website: "",
             elapsedMs: Date.now() - loadedAt,
-            source: "zthedev.com",
           }),
         });
-        if (!response.ok) throw new Error(`Webhook responded ${response.status}`);
+        if (!response.ok) throw new Error(`Contact handler responded ${response.status}`);
         setStatus("Thanks! Your message is on its way.", "success");
         form.reset();
       } catch (error) {
