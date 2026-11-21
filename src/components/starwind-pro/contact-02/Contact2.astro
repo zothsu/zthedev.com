@@ -99,10 +99,13 @@ const {
           />
         </div>
 
-        <!-- hCaptcha widget, rendered by the script below -->
-        <div id="contact-form-02-captcha" class="min-h-[78px]"></div>
+        <!-- Captcha on the left, submit on the right; stacked on narrow screens -->
+        <div class="flex flex-col gap-4 @xl:flex-row @xl:items-center @xl:justify-between">
+          <!-- hCaptcha widget, rendered by the script below -->
+          <div id="contact-form-02-captcha" class="min-h-[78px]"></div>
 
-        <Button variant="primary" type="submit" class="w-full @xl:w-auto"> Send Message </Button>
+          <Button variant="primary" type="submit" class="w-full @xl:w-auto"> Send Message </Button>
+        </div>
         <p id="contact-form-02-status" class="text-sm" role="status" aria-live="polite"></p>
       </form>
     </CardContent>
