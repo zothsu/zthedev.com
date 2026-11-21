@@ -20,7 +20,7 @@
 
 ## Background
 
-This repo is the source for [zthedev.com](https://zthedev.com/) a personal portfolio site covering Z's projects, certifications, an about page, and soon a blog. It's scoped as a portfolio only; there's no services/sales content here.
+This repo is the source for [zthedev.com](https://zthedev.com/) a personal portfolio site covering Z's projects, certifications and about sections, plus a contact form. It's scoped as a portfolio only; there's no services/sales content here.
 
 ## Tech Stack
 
@@ -62,7 +62,6 @@ npm run preview
 ```text
 src/
 ├── components/    # Astro components (sections, shared UI under components/ui/)
-├── data/          # Static content (e.g. blog post metadata)
 ├── layouts/       # Page layouts
 ├── pages/         # File-based routes
 ├── styles/        # Tailwind entry point and bundled fonts
@@ -73,13 +72,13 @@ public/
 
 ## Deployment
 
-Pushes to `main` trigger [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the site and deploys it to Hostinger over `rsync` via SSH. The blog is excluded from production deploys and from the sitemap (see `astro.config.mjs`), so it's only reachable in local/preview builds.
+Pushes to `main` trigger [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the site and deploys it to Hostinger over `rsync` via SSH.
 
 To deploy manually:
 
 ```bash
 npm run build
-rsync -avz --delete --exclude 'blogs/' dist/ your_user@your_server_ip:/home/your_user/public_html/
+rsync -avz --delete dist/ your_user@your_server_ip:/home/your_user/public_html/
 ```
 
 Hostinger shared hosting SSH port is typically `65002`:

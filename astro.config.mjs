@@ -7,10 +7,8 @@ export default defineConfig({
   site: 'https://zthedev.com',
   integrations: [
     sitemap({
-      // The blog is excluded from production deploys (see
-      // .github/workflows/deploy.yml), so keep it out of the sitemap too.
-      // /thank-you is noindex, so it stays out as well.
-      filter: (page) => !page.includes('/blogs') && !page.includes('/thank-you'),
+      // /thank-you is noindex, so keep it out of the sitemap.
+      filter: (page) => !page.includes('/thank-you'),
     }),
   ],
   vite: {
