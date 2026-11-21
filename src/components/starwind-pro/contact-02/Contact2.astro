@@ -99,6 +99,9 @@ const {
           />
         </div>
 
+        <!-- hCaptcha widget, rendered by the script below -->
+        <div id="contact-form-02-captcha" class="min-h-[78px]"></div>
+
         <Button variant="primary" type="submit" class="w-full @xl:w-auto"> Send Message </Button>
         <p id="contact-form-02-status" class="text-sm" role="status" aria-live="polite"></p>
       </form>
@@ -121,6 +124,30 @@ const {
     const submitLabel = submit.textContent;
     const loadedAt = Date.now();
 
+    // Web3Forms has hCaptcha switched on for this form, so every submit needs a
+    // token. Free plans must use Web3Forms' shared site key (public by design).
+    // The script is injected from JS because this host blanks external URLs in
+    // deployed HTML attributes.
+    const HCAPTCHA_SITE_KEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+    const captchaEl = form.querySelector<HTMLElement>("#contact-form-02-captcha")!;
+    let captchaId: string | undefined;
+
+    function renderCaptcha() {
+      const hcaptcha = (window as any).hcaptcha;
+      captchaId = hcaptcha.render(captchaEl, { sitekey: HCAPTCHA_SITE_KEY, theme: "dark" });
+    }
+
+    if ((window as any).hcaptcha?.render) {
+      renderCaptcha();
+    } else {
+      (window as any).onContactHcaptchaLoad = renderCaptcha;
+      const script = document.createElement("script");
+      script.src = "https://js.hcaptcha.com/1/api.js?render=explicit&onload=onContactHcaptchaLoad";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
     function setStatus(message: string, kind: "success" | "error") {
       status.textContent = message;
       status.classList.toggle("text-success", kind === "success");
@@ -136,6 +163,12 @@ const {
       if (values.website || Date.now() - loadedAt < 3000) {
         setStatus("Thanks! Your message is on its way.", "success");
         form.reset();
+        return;
+      }
+
+      const captchaToken: string = (window as any).hcaptcha?.getResponse(captchaId) ?? "";
+      if (!captchaToken) {
+        setStatus("Please complete the captcha before sending.", "error");
         return;
       }
 
@@ -159,6 +192,7 @@ const {
             email: values.email,
             subject: values.subject,
             message: values.message,
+            "h-captcha-response": captchaToken,
           }),
         });
         const result = await response.json().catch(() => null);
@@ -170,6 +204,8 @@ const {
         return;
       } catch (error) {
         console.error("Contact form submission failed:", error);
+        // Tokens are single-use, so a retry needs a fresh challenge.
+        (window as any).hcaptcha?.reset(captchaId);
         setStatus("Something went wrong sending your message. Please try again in a moment.", "error");
       } finally {
         submit.disabled = false;
