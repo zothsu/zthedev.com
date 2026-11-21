@@ -5,12 +5,51 @@ import AboutSection from '../components/AboutSection.astro';
 import CertificationsSection from '../components/CertificationsSection.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 import ContactSection from '../components/ContactSection.astro';
+
+// schema.org Person data for search engines (rendered as JSON-LD below).
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Z',
+  familyName: 'Sullivan',
+  alternateName: ['Z Sullivan', 'Zoe Sullivan', 'Z-theDev'],
+  image: 'https://zthedev.com/img/about.jpeg',
+  url: 'https://zthedev.com/',
+  jobTitle: 'Full-stack developer and design engineer',
+  description:
+    'Full-stack developer and design engineer building secure, accessible sites for small businesses and creators.',
+  knowsAbout: ['Web development', 'Astro', 'Accessibility', 'CI/CD', 'CRM automation'],
+  homeLocation: {
+    '@type': 'Place',
+    address: { '@type': 'PostalAddress', addressLocality: 'Portland', addressRegion: 'OR', addressCountry: 'US' },
+  },
+  worksFor: { '@type': 'Organization', name: 'PNW Digital Solutions', url: 'https://pnwdigitalsolutions.org/' },
+  alumniOf: { '@type': 'EducationalOrganization', name: 'General Assembly' },
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Software Engineering Immersive Program',
+      recognizedBy: { '@type': 'Organization', name: 'General Assembly' },
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Responsive Web Design',
+      recognizedBy: { '@type': 'Organization', name: 'freeCodeCamp' },
+    },
+  ],
+  sameAs: [
+    'https://github.com/zothsu',
+    'https://www.linkedin.com/in/z-sullivan/',
+    'https://x.com/z_thedev',
+  ],
+};
 ---
 
 <Layout 
   title="Z-theDev - Full Stack Developer & Design Engineer"
   description="Z-theDev — full-stack developer and design engineer building secure, accessible sites for small businesses. See projects, certifications, and contact info."
   >
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   <HeroSection />
   <ProjectsSection />
   <CertificationsSection />
