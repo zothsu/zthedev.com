@@ -50,6 +50,6 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p 65002 -H "$REMOTE_HOST" >> ~/.ssh/known_hosts
           # Target is the folder the domain is actually served from (~/public_html is
-          # not it on this account). --exclude keeps Hostinger's .htaccess and the
-          # SSL validation folder from being deleted.
-          rsync -avz --delete --exclude '.htaccess' --exclude '.well-known/' -e "ssh -p 65002 -i ~/.ssh/deploy_key" dist/ "$REMOTE_USER@$REMOTE_HOST:~/domains/zthedev.com/public_html/"
+          # not it on this account). --exclude keeps the SSL validation folder from
+          # being deleted. .htaccess ships from public/.htaccess.
+          rsync -avz --delete --exclude '.well-known/' -e "ssh -p 65002 -i ~/.ssh/deploy_key" dist/ "$REMOTE_USER@$REMOTE_HOST:~/domains/zthedev.com/public_html/"

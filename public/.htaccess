@@ -1,0 +1,7 @@
+# Kept from Hostinger's own file: never serve its build folder.
+RewriteEngine On
+RewriteRule ^\.builds - [F,L]
+
+# The blog is retired. Answer 410 Gone even if old files are still on disk.
+RewriteRule ^blogs(/|$) - [G,L]
+RewriteRule ^img/blog[0-9]+\.jpg$ - [G,L]

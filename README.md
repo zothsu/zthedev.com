@@ -78,7 +78,7 @@ To deploy manually:
 
 ```bash
 npm run build
-rsync -avz --delete --exclude '.htaccess' --exclude '.well-known/' dist/ your_user@your_server_ip:/home/your_user/domains/zthedev.com/public_html/
+rsync -avz --delete --exclude '.well-known/' dist/ your_user@your_server_ip:/home/your_user/domains/zthedev.com/public_html/
 ```
 
 Hostinger shared hosting SSH port is typically `65002`:
