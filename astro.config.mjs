@@ -9,7 +9,8 @@ export default defineConfig({
     sitemap({
       // The blog is excluded from production deploys (see
       // .github/workflows/deploy.yml), so keep it out of the sitemap too.
-      filter: (page) => !page.includes('/blogs'),
+      // /thank-you is noindex, so it stays out as well.
+      filter: (page) => !page.includes('/blogs') && !page.includes('/thank-you'),
     }),
   ],
   vite: {

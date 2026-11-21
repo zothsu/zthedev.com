@@ -59,7 +59,7 @@ export const blogItems: BlogItem[] = [
       <h3>Looking Ahead</h3>
       <p>The future of DevOps belongs to generalists who understand both systems and people. As automation grows, empathy and clarity will be the true force multipliers. Build, observe, iterate — and always leave your systems cleaner than you found them.</p>
 
-      <p>Want to talk open-source infrastructure or static-site workflows? <a href="/contact">Reach out</a> — I love swapping notes about real-world DevOps setups and helping small teams level up their stack.</p>
+      <p>Want to talk open-source infrastructure or static-site workflows? <a href="/#contact">Reach out</a> — I love swapping notes about real-world DevOps setups and helping small teams level up their stack.</p>
     `,
     author: {
       name: "Z Sullivan",
@@ -103,7 +103,7 @@ export const blogItems: BlogItem[] = [
       <h2>Operational Habits That Stick</h2>
       <p>Nightly smoke tests, Infrastructure as Code, and upstream contribution checklists keep my AI services from becoming an island. When we publish what broke and how we fixed it, the broader open-source ecosystem levels up with us.</p>
 
-      <p>If you're curious about running open AI that aligns with your values, <a href="/contact">reach out</a>. I love helping indie teams prove that privacy, resilience, and intelligence can coexist.</p>
+      <p>If you're curious about running open AI that aligns with your values, <a href="/#contact">reach out</a>. I love helping indie teams prove that privacy, resilience, and intelligence can coexist.</p>
   `,
     author: {
       name: "Z Sullivan",
@@ -147,7 +147,7 @@ export const blogItems: BlogItem[] = [
       <h2>Bring Humans into the Loop</h2>
       <p>Dashboards are conversation starters. Pair them with weekly async reviews, recorded walkthroughs, and issue templates that ask for context. When everyone speaks the same visual language, incidents turn into opportunities.</p>
 
-      <p>Need help untangling your observability story? <a href="/contact">Ping me</a> and we'll craft a dashboard stack the whole collective can own.</p>
+      <p>Need help untangling your observability story? <a href="/#contact">Ping me</a> and we'll craft a dashboard stack the whole collective can own.</p>
   `,
     author: {
       name: "Z Sullivan",
@@ -182,7 +182,7 @@ export const blogItems: BlogItem[] = [
       </ul>
       <h3>Community-Friendly Tooling</h3>
       <p>Open-source platforms like Supabase Functions, Cloudflare Workers, and Coolify make it realistic for tiny teams to self-host without losing sleep. The trick is pairing them with incident playbooks and a culture of publishing fixes.</p>
-      <p>Want to graft serverless into your federated stack? <a href="/contact">Let's architect it</a> so you can scale responsibly.</p>
+      <p>Want to graft serverless into your federated stack? <a href="/#contact">Let's architect it</a> so you can scale responsibly.</p>
     `,
     author: {
       name: "Z Sullivan",
@@ -223,7 +223,7 @@ export const blogItems: BlogItem[] = [
 
       <blockquote>"Commerce can be communal when we build networks that invite participation instead of locking it down." — Z Sullivan</blockquote>
 
-      <p>If you want a storefront that plays nice with ActivityPub and aligns with your values, <a href="/contact">let's build it</a> together.</p>
+      <p>If you want a storefront that plays nice with ActivityPub and aligns with your values, <a href="/#contact">let's build it</a> together.</p>
   `,
     author: {
       name: "Z Sullivan",
@@ -257,7 +257,7 @@ export const blogItems: BlogItem[] = [
       </ul>
       <h3>Governance for Humans</h3>
       <p>We pair architecture documents with decision records so new maintainers understand why the system looks the way it does. Transparency is the best onboarding tool we have.</p>
-      <p>By keeping components small, observable, and fork-friendly, the fediverse can evolve without leaving communities behind. <a href="/contact">Need a hand</a> designing yours? I'm here for it.</p>
+      <p>By keeping components small, observable, and fork-friendly, the fediverse can evolve without leaving communities behind. <a href="/#contact">Need a hand</a> designing yours? I'm here for it.</p>
     `,
     author: {
       name: "Z Sullivan",

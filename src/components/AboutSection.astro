@@ -1,6 +1,5 @@
 ---
 import ColoredText from "./ColoredText.astro";
-// import ProgressBar from "./ui/ProgressBar.astro";
 
 export interface AboutType {
   label?: string;
@@ -8,7 +7,6 @@ export interface AboutType {
   subtitle: string;
   image: string;
   stats: { value: string; label: string; borderColor: string }[];
-  // skills: { name: string; percentage: number }[];
   description: string[];
 }
 
@@ -21,12 +19,6 @@ const aboutData: AboutType = {
     { value: "7", label: "CI/CD Pipelines", borderColor: "neon-purple" },
     { value: "6+", label: "Years in tech", borderColor: "neon-cyan" },
   ],
-  // skills: [
-  //   { name: "Accessible Frontend Architecture", percentage: 95 },
-  //   { name: "Automation & CI/CD", percentage: 92 },
-  //   { name: "Site Reliability & Observability", percentage: 90 },
-  //   { name: "Team Enablement & Mentoring", percentage: 88 },
-  // ],
   description: [
     "I'm Z, a full-stack web developer and design engineer based in the enchanting Pacific Northwest. I build clean, secure, accessible websites for small businesses and creators who want control over their digital tools, not another subscription.",
     "I design fast, static sites with frameworks like Astro, automate deployment with GitHub Actions, and build in CRM systems that track funnels and client relationships. Your data staying under your control is a core part of my philosophy.",
@@ -93,13 +85,6 @@ const aboutData: AboutType = {
             <p class="text-gray-300 text-justify">{para}</p>
           ))
         }
-        <!-- <div class="space-y-4 pt-4">
-          {
-            aboutData.skills.map((skill) => (
-              <ProgressBar name={skill.name} percentage={skill.percentage} />
-            ))
-          }
-        </div> -->
       </div>
     </div>
   </div>
