@@ -33,6 +33,12 @@ jobs:
         env:
           PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
 
+      - name: Check the built contact form has its key
+        run: |
+          # Counts only; never prints page contents or the key.
+          echo "web3forms call in dist/index.html: $(grep -c 'api.web3forms.com' dist/index.html)"
+          grep -q 'api.web3forms.com' dist/index.html || echo "::warning::Built homepage has no Web3Forms call (key missing at build time)"
+
       - name: Deploy via rsync
         env:
           SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
