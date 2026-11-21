@@ -131,8 +131,9 @@ const {
       e.preventDefault();
       const values = Object.fromEntries(new FormData(form).entries());
 
-      // A filled honeypot means a bot; report success without sending anything.
-      if (values.website) {
+      // A filled honeypot or an implausibly fast submit means a bot; report
+      // success without sending anything.
+      if (values.website || Date.now() - loadedAt < 3000) {
         setStatus("Thanks! Your message is on its way.", "success");
         form.reset();
         return;
@@ -143,23 +144,30 @@ const {
       status.textContent = "";
 
       try {
-        // Same-site PHP script (public/contact-handler.php) that creates the
-        // Lead in EspoCRM, so no CRM URL or key ever appears in the page.
-        const response = await fetch("/contact-handler.php", {
+        // Web3Forms emails the message to the address the access key was
+        // registered with. The key is public by design (it ships in the page).
+        const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+        if (!accessKey) throw new Error("PUBLIC_WEB3FORMS_KEY is not set");
+
+        const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
+            access_key: accessKey,
+            from_name: "zthedev.com contact form",
             name: values.name,
             email: values.email,
             subject: values.subject,
             message: values.message,
-            website: "",
-            elapsedMs: Date.now() - loadedAt,
           }),
         });
-        if (!response.ok) throw new Error(`Contact handler responded ${response.status}`);
-        setStatus("Thanks! Your message is on its way.", "success");
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result?.success) {
+          throw new Error(`Web3Forms responded ${response.status}: ${result?.message ?? "no body"}`);
+        }
         form.reset();
+        window.location.assign("/thank-you");
+        return;
       } catch (error) {
         console.error("Contact form submission failed:", error);
         setStatus("Something went wrong sending your message. Please try again in a moment.", "error");

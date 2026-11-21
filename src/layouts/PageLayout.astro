@@ -10,6 +10,7 @@ import BackToTop from "../components/BackToTop.astro";
 export interface LayoutProps {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const navItems: NavItemType[] = [
@@ -22,6 +23,7 @@ const navItems: NavItemType[] = [
 const {
   title,
   description = "Crafting futuristic digital experiences with innovative web solutions.",
+  noindex = false,
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -32,6 +34,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#082918" />
     <title>{title}</title>

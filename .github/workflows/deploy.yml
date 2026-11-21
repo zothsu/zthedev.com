@@ -18,6 +18,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
 
       - name: Deploy via rsync
         env:
