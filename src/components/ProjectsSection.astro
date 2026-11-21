@@ -123,6 +123,10 @@ const projectsData: ProjectType[] = [
   //   ],
   // },
 ];
+
+// The homepage already has an <h1> in the hero, so the heading is an <h2> there;
+// the standalone /projects page passes "h1".
+const { headingTag: Heading = "h2" } = Astro.props;
 ---
 
 <section id="projects" class="py-24 relative overflow-hidden">
@@ -163,9 +167,9 @@ const projectsData: ProjectType[] = [
   >
     <div class="mb-16">
       <span class="text-neon-cyan font-code">{headingData.subtitle}</span>
-      <h2 class="text-4xl md:text-5xl font-bold mt-2">
+      <Heading class="text-4xl md:text-5xl font-bold mt-2">
         <ColoredText text={headingData.title} wordsPerColor={1} />
-      </h2>
+      </Heading>
       <div class="h-1 w-24 bg-neon-purple mt-4"></div>
       <p class="text-gray-300 max-w-3xl mt-6">
         {headingData.description}
