@@ -59,7 +59,7 @@ const heroData: HeroType = {
     </div>
   </div>
 
-  <div class="mx-auto px-4 relative z-10">
+  <div class="mx-auto w-full max-w-7xl px-4 relative z-10">
     <div class="grid lg:grid-cols-2 gap-8 items-center">
       <div class="flex flex-col gap-6">
         <div class="font-code text-neon-cyan">
@@ -73,7 +73,7 @@ const heroData: HeroType = {
         >
           <ColoredText text={heroData.title} class="max-lg:block" />
         </h1>
-        <p class="text-xl text-gray-300 mb-6">{heroData.subtitle}</p>
+        <p class="text-xl text-gray-300">{heroData.subtitle}</p>
         <div class="flex flex-col sm:flex-row gap-4 xl:gap-6">
           {
             heroData.cta.map((button) => (
