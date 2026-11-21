@@ -1,55 +1,32 @@
 ---
 import Layout from "../layouts/PageLayout.astro";
 import { Button } from "@/components/starwind/button";
-import { Input } from "@/components/starwind/input";
 ---
 
 <Layout title="Thank you | Z" description="Your message has been sent." noindex>
-  <section class="relative overflow-hidden">
+  <section class="relative flex flex-1 items-center justify-center overflow-hidden">
     <div class="absolute inset-0 cyber-grid opacity-20"></div>
-    <div class="relative mx-auto max-w-2xl px-4 py-24 text-center">
-      <span
-        class="bg-primary/10 text-primary-accent inline-block rounded-full px-4 py-1.5 text-sm font-medium"
-      >
-        Message sent
-      </span>
-      <h1 class="font-heading mt-6 text-3xl font-bold tracking-tight sm:text-5xl">
+    <div class="relative mx-auto w-full max-w-2xl px-4 py-24 text-center">
+      <h1 class="font-heading text-3xl font-bold tracking-tight sm:text-5xl">
         Thank you!
       </h1>
       <p class="text-muted-foreground mx-auto mt-4 max-w-xl text-lg">
-        Your message is on its way. Expect a reply from me in one to three business days.
+        Your message is on its way.<br />
+        Expect a reply from me in one to three business days.
       </p>
 
       <div class="mt-8">
         <Button variant="primary" href="/">Back to my website</Button>
       </div>
-
-      <form id="thank-you-search" class="mx-auto mt-14 max-w-md" role="search">
-        <label for="thank-you-search-input" class="text-muted-foreground mb-2 block text-sm">
-          Or look something up elsewhere
-        </label>
-        <div class="flex gap-2">
-          <Input
-            id="thank-you-search-input"
-            name="q"
-            type="search"
-            placeholder="Search the web"
-            autocomplete="off"
-            required
-          />
-          <Button variant="outline" type="submit">Search</Button>
-        </div>
-      </form>
     </div>
   </section>
 </Layout>
 
-<script>
-  // Built in JS rather than a form action: this host blanks external URLs in
-  // deployed HTML attributes.
-  document.querySelector<HTMLFormElement>("#thank-you-search")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const q = new FormData(e.currentTarget as HTMLFormElement).get("q")?.toString().trim();
-    if (q) window.location.assign(`https://duckduckgo.com/?q=${encodeURIComponent(q)}`);
-  });
-</script>
+<style is:global>
+  /* Let the thank-you section fill the space between navbar and footer so its
+     content centers vertically. Only emitted for this page. */
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
