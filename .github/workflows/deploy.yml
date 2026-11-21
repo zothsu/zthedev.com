@@ -17,6 +17,18 @@ jobs:
 
       - run: npm ci
 
+      - name: Check Web3Forms key is set
+        env:
+          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
+        run: |
+          # Prints only the length, never the value. Fails the deploy rather than
+          # shipping a contact form that can't send.
+          echo "PUBLIC_WEB3FORMS_KEY length: ${#PUBLIC_WEB3FORMS_KEY}"
+          if [ -z "${PUBLIC_WEB3FORMS_KEY// }" ]; then
+            echo "::error::The PUBLIC_WEB3FORMS_KEY repo secret is empty or missing"
+            exit 1
+          fi
+
       - run: npm run build
         env:
           PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
