@@ -99,12 +99,15 @@ const {
           />
         </div>
 
-        <!-- Captcha on the left, submit on the right; stacked on narrow screens -->
-        <div class="flex flex-col gap-4 @xl:flex-row @xl:items-center @xl:justify-between">
+        <!-- Captcha and submit side by side with equal space around; stacked on narrow screens -->
+        <div class="flex flex-col items-center gap-4 @xl:flex-row @xl:justify-around">
           <!-- hCaptcha widget, rendered by the script below -->
           <div id="contact-form-02-captcha" class="min-h-[78px]"></div>
 
-          <Button variant="primary" type="submit" class="w-full @xl:w-auto"> Send Message </Button>
+          <!-- Same size as the hCaptcha widget (302x76); ! beats the button's default height -->
+          <Button variant="primary" type="submit" class="h-[76px]! w-[302px]! max-w-full text-lg">
+            Send Message
+          </Button>
         </div>
         <p id="contact-form-02-status" class="text-sm" role="status" aria-live="polite"></p>
       </form>
